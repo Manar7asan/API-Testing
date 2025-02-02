@@ -1,0 +1,1637 @@
+{
+	"info": {
+		"_postman_id": "4174719e-6700-446c-b533-8306c42c49b9",
+		"name": "AutomationExercise_APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29187924"
+	},
+	"item": [
+		{
+			"name": "Register User Account",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"name\", \"janedoe456\");\r",
+							"pm.environment.set(\"email\", \"janedoe456@gmail.com\");\r",
+							"pm.environment.set(\"password\", \"S3cur3P@ss456!\");\r",
+							"pm.environment.set(\"title\", \"Mrs\");\r",
+							"pm.environment.set(\"birth_date\", \"22\");\r",
+							"pm.environment.set(\"birth_month\", \"March\");\r",
+							"pm.environment.set(\"birth_year\", \"1998\");\r",
+							"pm.environment.set(\"firstname\", \"Jane\");\r",
+							"pm.environment.set(\"lastname\", \"Doe\");\r",
+							"pm.environment.set(\"company\", \"XYZ Global Solutions\");\r",
+							"pm.environment.set(\"address1\", \"456 Elm Street\");\r",
+							"pm.environment.set(\"address2\", \"Suite 10A\");\r",
+							"pm.environment.set(\"country\", \"Canada\");\r",
+							"pm.environment.set(\"zipcode\", \"M5V 2T6\");\r",
+							"pm.environment.set(\"state\", \"Ontario\");\r",
+							"pm.environment.set(\"city\", \"Toronto\");\r",
+							"pm.environment.set(\"mobile_number\", \"+1 647-987-6543\");\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 201\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(201)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User created!\")\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "title ",
+							"value": "{{title}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "{{birth_date}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "{{birth_month}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "{{birth_year}}",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "{{firstname}}",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "{{lastname}}",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "{{company}}",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "{{address1}}",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "{{address2}}",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "{{country}}",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "{{zipcode}}",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "{{city}}",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "{{mobile_number}}",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BaseURL}}createAccount",
+					"host": [
+						"{{BaseURL}}createAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with valid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 200\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(200)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User exists!\")\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BaseURL}}verifyLogin",
+					"host": [
+						"{{BaseURL}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", () => {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"//Capturing response body \r",
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 200\" , () => {\r",
+							"    pm.expect(jsonData.responseCode).to.eql(200)\r",
+							"})\r",
+							"\r",
+							" // Retrieve schema from local variable and Validate response against schema\r",
+							"    const Ajv = require('ajv');\r",
+							"pm.test(\"Response follows the expected schema\", () => {\r",
+							"    const validate = new Ajv().compile(JSON.parse(pm.variables.get(\"productsListSchema\")));\r",
+							"    const valid = validate(jsonData);\r",
+							"    pm.expect(valid, new Ajv().errorsText(validate.errors)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response structure and types\", () => {\r",
+							"    pm.expect(jsonData.responseCode).to.be.a(\"number\");\r",
+							"// Loop through each product and validate the types of its keys\r",
+							"    jsonData.products.forEach(function(product) {\r",
+							"        pm.expect(product.id).to.be.a(\"number\");\r",
+							"        pm.expect(product.name).to.be.a(\"string\");\r",
+							"        // Validate 'price' is a string (it includes currency)\r",
+							"        pm.expect(product.price).to.be.a(\"string\");\r",
+							"        pm.expect(product.brand).to.be.a(\"string\");\r",
+							"        // Validate 'category' object contains the correct key types\r",
+							"        pm.expect(product.category).to.be.an(\"object\");\r",
+							"        pm.expect(product.category.usertype).to.be.an(\"object\");\r",
+							"        pm.expect(product.category.usertype.usertype).to.be.a(\"string\");\r",
+							"        pm.expect(product.category.category).to.be.a(\"string\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"productsListSchema\", JSON.stringify({\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"        \"responseCode\": { \"type\": \"integer\" },\r",
+							"        \"products\": {\r",
+							"            \"type\": \"array\",\r",
+							"            \"items\": {\r",
+							"                \"type\": \"object\",\r",
+							"                \"properties\": {\r",
+							"                    \"id\": { \"type\": \"integer\" },\r",
+							"                    \"name\": { \"type\": \"string\" },\r",
+							"                    \"price\": { \"type\": \"string\" },\r",
+							"                    \"brand\": { \"type\": \"string\" },\r",
+							"                    \"category\": {\r",
+							"                        \"type\": \"object\",\r",
+							"                        \"properties\": {\r",
+							"                            \"usertype\": {\r",
+							"                                \"type\": \"object\",\r",
+							"                                \"properties\": {\r",
+							"                                    \"usertype\": { \"type\": \"string\" }\r",
+							"                                },\r",
+							"                                \"required\": [\"usertype\"]\r",
+							"                            },\r",
+							"                            \"category\": { \"type\": \"string\" }\r",
+							"                        },\r",
+							"                        \"required\": [\"usertype\", \"category\"]\r",
+							"                    }\r",
+							"                },\r",
+							"                \"required\": [\"id\", \"name\", \"price\", \"brand\", \"category\"]\r",
+							"            }\r",
+							"        }\r",
+							"    },\r",
+							"    \"required\": [\"responseCode\", \"products\"]\r",
+							"}));\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}productsList",
+					"host": [
+						"{{BaseURL}}productsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To All Products List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 405\", () => {\r",
+							"    pm.expect(jsonData.responseCode).to.eql(405)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"This request method is not supported.\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}productsList",
+					"host": [
+						"{{BaseURL}}productsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Brands List",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"brandsListSchema\", JSON.stringify({\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"responseCode\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"brands\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        },\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"id\": {\r",
+							"              \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"brand\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"id\",\r",
+							"            \"brand\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"responseCode\",\r",
+							"    \"brands\"\r",
+							"  ]\r",
+							"}))"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"//Capturing response body \r",
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 200\" , () => {\r",
+							"    pm.expect(jsonData.responseCode).to.eql(200)\r",
+							"})\r",
+							"\r",
+							" // Retrieve schema from local variable and Validate response against schema\r",
+							"   const Ajv = require('ajv');\r",
+							"pm.test(\"Response follows the expected schema\", () => {\r",
+							"    const validate = new Ajv().compile(JSON.parse(pm.variables.get(\"brandsListSchema\")));\r",
+							"    const valid = validate(jsonData);\r",
+							"\r",
+							"    pm.expect(valid, new Ajv().errorsText(validate.errors)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response structure and types\", () => {\r",
+							"    pm.expect(jsonData.responseCode).to.be.a(\"number\");\r",
+							"    jsonData.brands.forEach(function(brand) {\r",
+							"        pm.expect(brand.id).to.be.a(\"number\");\r",
+							"        pm.expect(brand.brand).to.be.a(\"string\");\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}brandsList",
+					"host": [
+						"{{BaseURL}}brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT To All Brands List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 405\" , ()=> {\r",
+							"    pm.expect(jsonData.responseCode).to.eql(405)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"This request method is not supported.\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}brandsList",
+					"host": [
+						"{{BaseURL}}brandsList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To Search Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Capturing response body \r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"ResponseCode is 200\" , () => {\r",
+							"    pm.expect(jsonData.responseCode).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"All product names contain the searched term\", () => {\r",
+							"    var searchTerm = pm.variables.get(\"search_product\").toLowerCase();\r",
+							"    \r",
+							"    jsonData.products.forEach(product => {\r",
+							"        pm.expect(product.name && typeof product.name === 'string' && product.name.toLowerCase()).to.include(searchTerm);\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"search_product\" , \"Top\")"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "search_product",
+							"value": "{{search_product}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BaseURL}}searchProduct",
+					"host": [
+						"{{BaseURL}}searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST To Search Product without search_product parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Capturing response body \r",
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 400\" , () => {\r",
+							"    pm.expect(jsonData.responseCode).to.eql(400)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Bad request, search_product parameter is missing in POST request.\")\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{BaseURL}}searchProduct",
+					"host": [
+						"{{BaseURL}}searchProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Account",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"name\", \"janedoe456\");\r",
+							"pm.environment.set(\"email\", \"janedoe456@gmail.com\");\r",
+							"pm.environment.set(\"password\", \"S3cur3P@ss456!\");\r",
+							"pm.environment.set(\"title\", \"Ms\");\r",
+							"pm.environment.set(\"birth_date\", \"15\");\r",
+							"pm.environment.set(\"birth_month\", \"July\");\r",
+							"pm.environment.set(\"birth_year\", \"2000\");\r",
+							"pm.environment.set(\"firstname\", \"Janet\");\r",
+							"pm.environment.set(\"lastname\", \"Doe-Smith\");\r",
+							"pm.environment.set(\"company\", \"ABC Corp\");\r",
+							"pm.environment.set(\"address1\", \"789 Oak Avenue\");\r",
+							"pm.environment.set(\"address2\", \"Penthouse 4C\");\r",
+							"pm.environment.set(\"country\", \"USA\");\r",
+							"pm.environment.set(\"zipcode\", \"90210\");\r",
+							"pm.environment.set(\"state\", \"California\");\r",
+							"pm.environment.set(\"city\", \"Los Angeles\");\r",
+							"pm.environment.set(\"mobile_number\", \"+1 323-555-1234\");\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 200\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(200)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User updated!\")\r",
+							"})\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "title ",
+							"value": "{{title}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_date",
+							"value": "{{birth_date}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_month",
+							"value": "{{birth_month}}",
+							"type": "text"
+						},
+						{
+							"key": "birth_year",
+							"value": "{{birth_year}}",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "{{firstname}}",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "{{lastname}}",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "{{company}}",
+							"type": "text"
+						},
+						{
+							"key": "address1",
+							"value": "{{address1}}",
+							"type": "text"
+						},
+						{
+							"key": "address2",
+							"value": "{{address2}}",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "{{country}}",
+							"type": "text"
+						},
+						{
+							"key": "zipcode",
+							"value": "{{zipcode}}",
+							"type": "text"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "{{city}}",
+							"type": "text"
+						},
+						{
+							"key": "mobile_number",
+							"value": "{{mobile_number}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BaseURL}}updateAccount",
+					"host": [
+						"{{BaseURL}}updateAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET user account detail by email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"ResponseCode is 200\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(200)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Validate user details\" , ()=> {\r",
+							"    pm.expect(jsonData.user.name).to.eql(pm.environment.get(\"name\"))\r",
+							"        pm.expect(jsonData.user.email).to.eql(pm.environment.get(\"email\"))\r",
+							"    pm.expect(jsonData.user.title).to.eql(pm.environment.get(\"title\"))\r",
+							"    pm.expect(jsonData.user.birth_day).to.eql(pm.environment.get(\"birth_day\"))\r",
+							"    pm.expect(jsonData.user.birth_month).to.eql(pm.environment.get(\"birth_month\"))\r",
+							"    pm.expect(jsonData.user.birth_year).to.eql(pm.environment.get(\"birth_year\"))\r",
+							"        pm.expect(jsonData.user.first_name).to.eql(pm.environment.get(\"firstname\"))\r",
+							"    pm.expect(jsonData.user.last_name).to.eql(pm.environment.get(\"lastname\"))\r",
+							"    pm.expect(jsonData.user.company).to.eql(pm.environment.get(\"company\"))\r",
+							"    pm.expect(jsonData.user.address1).to.eql(pm.environment.get(\"address1\"))\r",
+							"    pm.expect(jsonData.user.address2).to.eql(pm.environment.get(\"address2\"))\r",
+							"    pm.expect(jsonData.user.country).to.eql(pm.environment.get(\"country\"))\r",
+							"    pm.expect(jsonData.user.state).to.eql(pm.environment.get(\"state\"))\r",
+							"    pm.expect(jsonData.user.city).to.eql(pm.environment.get(\"city\"))\r",
+							"    pm.expect(jsonData.user.zipcode).to.eql(pm.environment.get(\"zipcode\"))\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Validate User Mobile Number\", function () {\r",
+							"    pm.expect(jsonData.mobile_number).to.eql(pm.environment.get(\"mobile_number\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{BaseURL}}getUserDetailByEmail?email={{email}}",
+					"host": [
+						"{{BaseURL}}getUserDetailByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE To Verify Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 405\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(405)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"This request method is not supported.\")\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}verifyLogin",
+					"host": [
+						"{{BaseURL}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login without email parameter",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 400\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(400)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Bad request, email or password parameter is missing in POST request.\")\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BaseURL}}verifyLogin",
+					"host": [
+						"{{BaseURL}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with invalid details",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 404\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(404)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"User not found!\")\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "me1@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "me123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BaseURL}}verifyLogin",
+					"host": [
+						"{{BaseURL}}verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.test(\"ResponseCode is 200\" , ()=> {\r",
+							"pm.expect(jsonData.responseCode).to.eql(200)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Check the Response Message\" , ()=> {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Account deleted!\")\r",
+							"})\r",
+							"\r",
+							"pm.environment.unset(\"name\");\r",
+							"pm.environment.unset(\"email\");\r",
+							"pm.environment.unset(\"password\");\r",
+							"pm.environment.unset(\"title\");\r",
+							"pm.environment.unset(\"birth_date\");\r",
+							"pm.environment.unset(\"birth_month\");\r",
+							"pm.environment.unset(\"birth_year\");\r",
+							"pm.environment.unset(\"firstname\");\r",
+							"pm.environment.unset(\"lastname\");\r",
+							"pm.environment.unset(\"company\");\r",
+							"pm.environment.unset(\"address1\");\r",
+							"pm.environment.unset(\"address2\");\r",
+							"pm.environment.unset(\"country\");\r",
+							"pm.environment.unset(\"zipcode\");\r",
+							"pm.environment.unset(\"state\");\r",
+							"pm.environment.unset(\"city\");\r",
+							"pm.environment.unset(\"mobile_number\");\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BaseURL}}deleteAccount",
+					"host": [
+						"{{BaseURL}}deleteAccount"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURL",
+			"value": "https://automationexercise.com/api/",
+			"type": "string"
+		}
+	]
+}
